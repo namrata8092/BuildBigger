@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'release'
+            keyPassword 'release'
+            storeFile file('C:/NamrataPOC/sourcecode/BuildBigger/app/release.jks')
+            storePassword 'release'
+        }
+        debug {
+            keyAlias 'debug'
+            keyPassword 'debugapp'
+            storeFile file('C:/NamrataPOC/sourcecode/BuildBigger/app/debug.jks')
+            storePassword 'debugapp'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.nds.gradle.master.buildbigger"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    productFlavors {
+        free {
+            applicationIdSuffix ".free"
+            minSdkVersion 21
+            signingConfig signingConfigs.config
+            targetSdkVersion 26
+            versionName '1.0.0'
+        }
+        paid {
+            applicationIdSuffix ".paid"
+            minSdkVersion 21
+            signingConfig signingConfigs.config
+            targetSdkVersion 26
+            versionName '1.0.0'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    freeCompile 'com.google.android.gms:play-services-ads:9.8.0'
+}
