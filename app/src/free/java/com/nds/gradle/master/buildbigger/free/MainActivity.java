@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.nds.gradle.master.buildbigger.R;
-
+/**
+ * Created by Namrata Shah on 7/25/2017.
+ */
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
 
