@@ -59,5 +59,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.0.0'
-    freeCompile 'com.google.android.gms:play-services-ads:9.8.0'
+    //    freeCompile 'com.google.firebase:firebase-ads:11.0.2'
+    freeCompile 'com.google.android.gms:play-services-ads:11.0.4'
+    //    freeCompile 'com.google.firebase:firebase-ads:11.0.4'
+    compile project(':jokeslibrary')
 }
+//apply plugin: 'com.google.gms.google-services'
