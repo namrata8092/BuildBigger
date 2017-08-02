@@ -4,27 +4,37 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.nds.jokesandroidlibrary.DisplayUtil;
+import com.nds.jokeslibrary.ManualJoke;
 import com.nds.jokeslibrary.WizardJoke;
 
 /**
  * Created by Namrata Shah on 7/25/2017.
  */
 public class MainActivity extends AppCompatActivity {
-
-    private Button mDisplayJokeButton;
+    private Button mDisplayManualJoke;
+    private Button mDisplayWizardJoke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDisplayJokeButton = (Button)findViewById(R.id.displayJoke);
-        mDisplayJokeButton.setOnClickListener(new View.OnClickListener() {
+        mDisplayManualJoke = (Button)findViewById(R.id.manualJoke);
+        mDisplayManualJoke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ManualJoke wizardJoke = new ManualJoke();
+                DisplayUtil.displayJoke(wizardJoke.tellJoke(), getApplicationContext());
+            }
+        });
+
+        mDisplayWizardJoke = (Button)findViewById(R.id.wizardJoke);
+        mDisplayWizardJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 WizardJoke wizardJoke = new WizardJoke();
-                Toast.makeText(getApplicationContext(), "Paid joke "+wizardJoke.tellWizardJoke(), Toast.LENGTH_SHORT).show();
+                DisplayUtil.displayJoke(wizardJoke.tellWizardJoke(), getApplicationContext());
             }
         });
     }

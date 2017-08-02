@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.nds.gradle.master.buildbigger.MainActivity">
 
-    <Button android:id="@+id/displayJoke"
+    <Button android:id="@+id/manualJoke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/show_joke" />
+        android:text="@string/show_manual_joke" />
 
-</RelativeLayout>
+    <Button android:id="@+id/wizardJoke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/show_wizard_joke" />
+
+</LinearLayout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">jokesAndroidLibrary</string>
+    <string name="joke_error" translatable="true">No jokes found</string>
+</resources>
