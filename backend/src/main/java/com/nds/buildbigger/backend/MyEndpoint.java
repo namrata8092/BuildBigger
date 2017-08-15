@@ -16,7 +16,7 @@ import javax.inject.Named;
  * An endpoint class we are exposing
  */
 @Api(
-        name = "myApi",
+        name = "jokeApi",
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "backend.buildbigger.nds.com",
@@ -29,12 +29,24 @@ public class MyEndpoint {
     /**
      * A simple endpoint method that takes a name and says Hi back
      */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
-        MyBean response = new MyBean();
-        response.setData("Hi, " + name);
+//    @ApiMethod(name = "sayHi")
+//    public MyBean sayHi(@Named("name") String name) {
+//        MyBean response = new MyBean();
+//        response.setData("Hi, " + name);
+//
+//        return response;
+//    }
 
-        return response;
+    @ApiMethod(name = "getManualJoke")
+    public ManualJokeBean getManualJoke() {
+        ManualJokeBean manualJokeBean = new ManualJokeBean();
+        return manualJokeBean;
+    }
+
+    @ApiMethod(name = "getWizardJoke")
+    public WizardJokeBean getWizardJoke() {
+        WizardJokeBean wizardlJokeBean = new WizardJokeBean();
+        return wizardlJokeBean;
     }
 
 }

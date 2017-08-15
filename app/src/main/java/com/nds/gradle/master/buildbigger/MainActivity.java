@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.nds.jokesandroidlibrary.DisplayUtil;
 import com.nds.jokeslibrary.ManualJoke;
@@ -24,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
         mDisplayManualJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ManualJoke wizardJoke = new ManualJoke();
-                DisplayUtil.displayJoke(wizardJoke.tellJoke(), getApplicationContext());
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar);
+                new EndpointsAsyncTask(getApplicationContext(), progressBar).execute();
+//                ManualJoke wizardJoke = new ManualJoke();
+//                DisplayUtil.displayJoke(wizardJoke.tellJoke(), getApplicationContext());
             }
         });
 

@@ -5,9 +5,11 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.nds.gradle.master.buildbigger.EndpointsAsyncTask;
 import com.nds.gradle.master.buildbigger.R;
 import com.nds.jokesandroidlibrary.DisplayUtil;
 import com.nds.jokeslibrary.ManualJoke;
@@ -37,8 +39,11 @@ public class MainActivity extends AppCompatActivity {
         mDisplayManualJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ManualJoke wizardJoke = new ManualJoke();
-                DisplayUtil.displayJoke(wizardJoke.tellJoke(), getApplicationContext());
+//                ManualJoke wizardJoke = new ManualJoke();
+//                DisplayUtil.displayJoke(wizardJoke.tellJoke(), getApplicationContext());
+
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar);
+                new EndpointsAsyncTask(getApplicationContext(), progressBar).execute();
             }
         });
 

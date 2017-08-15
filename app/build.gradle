@@ -33,7 +33,7 @@ android {
             signingConfig signingConfigs.config
         }
         debug {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
@@ -73,5 +73,7 @@ dependencies {
     compile project(':jokesandroidlibrary')
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':backend', configuration: 'android-endpoints')
+    compile 'com.google.appengine:appengine-endpoints:1.9.54'
+    compile project(path: ':backend')
 }
 //apply plugin: 'com.google.gms.google-services'
