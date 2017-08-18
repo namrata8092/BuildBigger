@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar);
                 new EndpointsAsyncTask(getApplicationContext(), progressBar).execute();
-//                ManualJoke wizardJoke = new ManualJoke();
-//                DisplayUtil.displayJoke(wizardJoke.tellJoke(), getApplicationContext());
             }
         });
 

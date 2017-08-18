@@ -3,6 +3,7 @@ package com.nds.gradle.master.buildbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -37,27 +38,22 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
         if(myApiService == null) {  // Only do this once
             JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    // options for running against local devappserver
-                    // - 10.0.2.2 is localhost's IP address in Android emulator
-                    // - turn off compression when running against local devappserver
-                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                    .setRootUrl(mContext.getString(R.string.endpoint_url))
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
-            // end options for devappserver
-
+            Log.d("Test","create service");
             myApiService = builder.build();
         }
 
-        mContext = params[0].first;
-        String name = params[0].second;
-
         try {
+            Log.d("Test","available service");
             return myApiService.getManualJoke().execute().getManualJoke();
         } catch (IOException e) {
+            Log.d("Test","exception "+e.toString());
             return e.getMessage();
         }
     }
@@ -66,14 +62,21 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     protected void onPreExecute() {
         super.onPreExecute();
         if (mProgressBar != null) {
+            Log.d("Test","onPreExecute show progress");
             mProgressBar.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
+        if (mProgressBar != null) {
+            Log.d("Test","onPostExecute hide progress");
+            mProgressBar.setVisibility(View.GONE);
+        }
+        Log.d("Test","onPostExecute result "+result);
         mResult = result;
         Toast.makeText(mContext, result, Toast.LENGTH_LONG).show();
+        startJokeDisplayActivity();
     }
 
     private void startJokeDisplayActivity() {

@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/show_wizard_joke" />
     <ProgressBar android:id="@+id/progressbar"
+        android:visibility="gone"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"/>

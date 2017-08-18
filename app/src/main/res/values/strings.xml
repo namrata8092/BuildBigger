@@ -3,6 +3,7 @@
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4040673918923224/6514869677</string>
     <string name="show_manual_joke" translatable="true">Display Manual Joke</string>
     <string name="show_wizard_joke" translatable="true">Display Wizard Joke</string>
+    <string name="endpoint_url" translatable="false">http://nanodegree-164817.appspot.com/_ah/api/</string>
 
 </resources>
 
