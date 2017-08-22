@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">BuildBigger Free</string>
-    <string name="banner_ad_unit_id">ca-app-pub-4040673918923224/6514869677</string>
+    <string name="app_id" translatable="false">ca-app-pub-4040673918923224~1497867780</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-4040673918923224/8648458820</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4040673918923224/6514869677</string>
 </resources>

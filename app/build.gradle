@@ -30,10 +30,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
         debug {
+            debuggable true
             signingConfig signingConfigs.debug
         }
     }
@@ -65,12 +67,12 @@ allprojects{
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:26.0.0'
-    freeCompile 'com.google.android.gms:play-services-ads:11.0.4'
-    //    freeCompile 'com.google.firebase:firebase-ads:11.0.4'
     compile project(':jokesjavalibrary')
     compile project(':jokesandroidlibrary')
-    compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':backend', configuration: 'android-endpoints')
+    compile 'com.android.support:appcompat-v7:26.0.1'
+    freeCompile 'com.google.android.gms:play-services-ads:11.2.0'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    androidTestCompile 'junit:junit:4.+'
 }
 //apply plugin: 'com.google.gms.google-services'
