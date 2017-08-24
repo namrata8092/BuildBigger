@@ -35,7 +35,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
-        if(myApiService == null) {  // Only do this once
+        if(myApiService == null) {
             JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     .setRootUrl(mContext.getString(R.string.endpoint_url))
@@ -45,15 +45,12 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
-            Log.d("Test","create service");
             myApiService = builder.build();
         }
 
         try {
-            Log.d("Test","available service");
             return myApiService.getManualJoke().execute().getManualJoke();
         } catch (IOException e) {
-            Log.d("Test","exception "+e.toString());
             return e.getMessage();
         }
     }
@@ -62,7 +59,6 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     protected void onPreExecute() {
         super.onPreExecute();
         if (mProgressBar != null) {
-            Log.d("Test","onPreExecute show progress");
             mProgressBar.setVisibility(View.VISIBLE);
         }
     }
@@ -70,10 +66,8 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected void onPostExecute(String result) {
         if (mProgressBar != null) {
-            Log.d("Test","onPostExecute hide progress");
             mProgressBar.setVisibility(View.GONE);
         }
-        Log.d("Test","onPostExecute result "+result);
         mResult = result;
         Toast.makeText(mContext, result, Toast.LENGTH_LONG).show();
         startJokeDisplayActivity();
