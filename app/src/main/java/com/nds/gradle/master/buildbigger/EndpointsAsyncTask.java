@@ -36,9 +36,10 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
         if(myApiService == null) {
+            String endpointUrl = mContext != null ? mContext.getString(R.string.endpoint_url) : "http://nanodegree-164817.appspot.com/_ah/api/";
             JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl(mContext.getString(R.string.endpoint_url))
+                    .setRootUrl(endpointUrl)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -69,14 +70,15 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
             mProgressBar.setVisibility(View.GONE);
         }
         mResult = result;
-        Toast.makeText(mContext, result, Toast.LENGTH_LONG).show();
         startJokeDisplayActivity();
     }
 
     private void startJokeDisplayActivity() {
-        Intent intent = new Intent(mContext, DisplayJokeActivity.class);
-        intent.putExtra(DisplayJokeActivity.JOKE_KEY, mResult);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
+        if(mContext!=null){
+            Intent intent = new Intent(mContext, DisplayJokeActivity.class);
+            intent.putExtra(DisplayJokeActivity.JOKE_KEY, mResult);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+        }
     }
 }
